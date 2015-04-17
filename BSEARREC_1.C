@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<conio.h>
+int sear(int l,int u,int item,int* a)
+{
+int m=0;
+m=(l+u)/2;
+if(item<a[m])
+u=m-1;
+else if(item>a[m])
+l=m+1;
+else
+return(m+1);
+if(l<=u && item!=a[m])
+return (sear(l,u,item,a));
+else
+return (-1);
+}
+void main()
+{
+int l,u,m,item,s,i,*arr,pos;
+clrscr();
+printf("Enter the size of the array: ");
+scanf("%d",&s);
+arr=(int *)malloc(s*sizeof(int));
+printf("\nEnter the elments of sorted integer array one by one:-\n");
+for(i=0;i<s;i++)
+scanf("%d",&arr[i]);
+printf("\nEnter the integer to search for: ");
+scanf("%d",&item);
+l=0;
+u=s;
+pos=sear(l,u,item,arr);
+if(pos==-1)
+printf("\n\nThe integer was not found..!");
+else
+printf("\n\nThe integer was found at position %d.",pos);
+getch();
+}
